@@ -13,4 +13,4 @@ ENTRYPOINT ["./entrypoint.sh"]
 EXPOSE 3001
 
 # Configure the main process to run when running the image
-CMD ["rails", "server", "-p", "3001", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-p", "3000", "-b", "0.0.0.0"]
