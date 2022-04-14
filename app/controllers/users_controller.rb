@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   # GET /users or /users.json
   def index
     @users = User.all
+    @users = User.by_page(params[:page]) if params[:page].present?
+    @pagy = Pagy.new @users.metadata
   end
 
   # GET /users/1 or /users/1.json
