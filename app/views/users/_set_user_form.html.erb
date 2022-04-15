@@ -1,0 +1,11 @@
+<%= form_with url: set_current_user_path, method: :post do | form | %>
+  <div class="form-group">
+    <%= form.label :current_user_id, 'Current user session: ', class: "form-label select-label"%>
+    <%= "#{@current_user&.id} - #{@current_user&.first_name} #{@current_user&.last_name}"  %>
+    <%= form.select(:current_user_id, User.users_collection, {include_blank: true, selected: @current_user&.id }, class: 'form-control select-control')%>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

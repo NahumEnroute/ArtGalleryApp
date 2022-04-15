@@ -59,6 +59,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def set_current_user
+    Thread.current[:user] = User.find(params[:current_user_id])
+    redirect_to root_url
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
