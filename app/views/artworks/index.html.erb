@@ -1,14 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Artworks</h1>
+<%= link_to "New artwork", new_artwork_path %>
+<%== pagy_nav(@pagy) %>
 
-<div id="artworks">
+<div id="artworks" class="row">
   <% @artworks.each do |artwork| %>
-    <%= render artwork %>
-    <p>
-      <%= link_to "Show this artwork", artwork %>
-    </p>
+    <div class="card m-2" style="width: 18rem;">
+      <div class="m-3">
+        <%= render artwork %>
+        <p>
+          <%= link_to "Show this artwork", artwork %>
+        </p>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New artwork", new_artwork_path %>
