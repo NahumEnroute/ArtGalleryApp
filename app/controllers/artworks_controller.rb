@@ -4,7 +4,8 @@ class ArtworksController < ApplicationController
   # GET /artworks or /artworks.json
   def index
     @artworks = Artwork.all
-    @artworks = Artwork.by_page(params[:page]) if params[:page].present?
+    @artworks = Artwork.filter(filter_params) if filter_params.present?
+    @users = User.users_collection
     @pagy = Pagy.new @artworks.metadata
   end
 
@@ -68,5 +69,12 @@ class ArtworksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def artwork_params
       params.require(:artwork).permit(:user_id, :title, :description, :movement, :price)
+    end
+
+    def filter_params
+      # TODO: needs refactor
+      params[:user_id] = [params[:user_id]].flatten if params[:user_id].present?
+  
+      params.permit(:title, :price_min, :price_max, user_id: [], movement: [])
     end
 end
