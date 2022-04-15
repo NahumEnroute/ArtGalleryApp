@@ -77,6 +77,11 @@ class ArtworksController < ApplicationController
         params[:user_id] = [params[:user_id]].flatten
         @user_id = params[:user_id]&.map(&:to_s)
       end
+
+      if params[:movement].present?
+        params[:movement] = [params[:movement].split(',')].flatten
+        @movement = params[:movement].join(',')
+      end
   
       params.permit(:title, :price_min, :price_max, user_id: [], movement: [])
     end

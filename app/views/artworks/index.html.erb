@@ -5,6 +5,11 @@
 <%= form_with url: artworks_path, method: :get do | form | %>
 
   <div class="form-group">
+    <%= form.label :movement %>
+    <%= form.text_field :movement, value: @movement, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :user_id, class: "form-label select-label"%>
     <%= select_tag :user_id, options_from_collection_for_select(@users, :id, :first_name, @user_id), multiple: true, class: 'form-control select-control'%>
   </div>
