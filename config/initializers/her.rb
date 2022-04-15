@@ -8,7 +8,7 @@ class CustomParser < Faraday::Response::Middleware
       metadata: json[:metadata]
     }
     env[:body][:data] = json[:data][:data]
-    env[:body][json[:data][:type].to_sym] = json[:data][:data]
+    # env[:body][json[:data][:type].to_sym] = json[:data][:data]
     env
   end
 end
