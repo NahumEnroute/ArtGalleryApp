@@ -5,7 +5,7 @@ class ArtworksController < ApplicationController
   def index
     @artworks = Artwork.all
     @artworks = Artwork.filter(filter_params) if filter_params.present?
-    @users = User.users_collection
+    @users = User.all
     @pagy = Pagy.new @artworks.metadata
   end
 
@@ -73,7 +73,10 @@ class ArtworksController < ApplicationController
 
     def filter_params
       # TODO: needs refactor
-      params[:user_id] = [params[:user_id]].flatten if params[:user_id].present?
+      if params[:user_id].present?
+        params[:user_id] = [params[:user_id]].flatten
+        @user_id = params[:user_id]&.map(&:to_s)
+      end
   
       params.permit(:title, :price_min, :price_max, user_id: [], movement: [])
     end
